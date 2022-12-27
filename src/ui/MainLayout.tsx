@@ -1,28 +1,16 @@
-import React from "react"
-import styled from "styled-components"
-import Header from "../components/Header"
+import { Box } from "@chakra-ui/react";
+import React from "react";
+import Header from "../components/Header";
 
-export default function MainLayout(props: React.PropsWithChildren): JSX.Element {
-
-    return (
-        <Root>
-            <Header />
-            <BodyRoot>
-                {props.children}
-            </BodyRoot>
-        </Root>
-    )
+export default function MainLayout(
+  props: React.PropsWithChildren
+): JSX.Element {
+  return (
+    <Box display="flex" flexDirection="column" height="100vh" flex="1">
+      <Header />
+      <Box height="100%" padding="20px" background="#f5f5f5">
+        {props.children}
+      </Box>
+    </Box>
+  );
 }
-
-const Root = styled.section `
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-    flex: 1
-`;
-
-const BodyRoot = styled.div `
-    background-color: #F5F5F5;
-    height: 100%;
-    padding: 20px;
-`;
