@@ -13,7 +13,7 @@ import {
 } from '@chakra-ui/react';
 import React from 'react';
 import { ProductType } from '../../models/ProductType';
-import HomeUiState from '../states/HomeUiState';
+import useHomeUiState from '../states/HomeUiState';
 
 type AddProductProps = {
     open: boolean;
@@ -28,7 +28,7 @@ export default function AddProduct(props: AddProductProps): JSX.Element {
         onSave
     } = props;
 
-    const [product, setProduct] = React.useState<HomeUiState>(new HomeUiState());
+    const {product, setProduct} = useHomeUiState();
 
     function onChangeText(event: React.ChangeEvent<HTMLInputElement> | undefined) {
         setProduct({

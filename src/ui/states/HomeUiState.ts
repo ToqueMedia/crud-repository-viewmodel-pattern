@@ -1,20 +1,17 @@
+import React from "react";
 import { ProductType } from "../../models/ProductType";
 
-export default class HomeUiState implements ProductType {
-    productName: string;
-    image: string;
-    description: string;
-    price: number;
+export default function useHomeUiState() {
+    
+    const [product, setProduct] = React.useState<ProductType>({
+        price: 0,
+        productName: "",
+        description: "",
+        image: ""
+    });
 
-    constructor(
-        productName: string = "",
-        image: string = "",
-        description: string = "",
-        price: number = 0
-    ) {
-        this.productName = productName;
-        this.image = image;
-        this.description = description;
-        this.price = price;
+    return {
+        product,
+        setProduct
     }
 }

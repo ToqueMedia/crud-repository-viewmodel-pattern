@@ -5,10 +5,10 @@ import { ProductRepository } from "../interfaces/ProductRepository";
 export default class ProductRepositoryImpl extends ProductDao implements ProductRepository {
     
     getAllProducts(): ProductType[] {
-        return this.selectAll();
+        return super.selectAll();
     }
 
     save(product: ProductType): void {
-        this.insert(product);
+        super.insert(product)
     }
 }
