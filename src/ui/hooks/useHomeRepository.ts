@@ -1,20 +1,19 @@
 import React from "react"
 import { ProductType } from "../../models/ProductType"
-import ProductRepositoryImpl from "../../repository/ProductRepositoryImpl";
+import useProductDao from "../../database/dao/ProductDao";
 
-export default function useHomeViewModel() {
+export default function useHomeRepository() {
 
     const [products, setProducts] = React.useState<ProductType[]>([]);
+    const { insert, selectAll } = useProductDao()
 
     function getProducts() {
-        const p = new ProductRepositoryImpl();
-        const response = p.getAllProducts();
+        const response = selectAll();
         setProducts(response);
     }
 
     function saveProduct(product: ProductType) {
-        const p = new ProductRepositoryImpl();
-        p.save(product);
+        insert(product);
     }
 
     return {

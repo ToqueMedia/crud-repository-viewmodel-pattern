@@ -12,8 +12,8 @@ import {
     Button,
 } from '@chakra-ui/react';
 import React from 'react';
-import { ProductType } from '../../models/ProductType';
-import useHomeUiState from '../states/HomeUiState';
+import { ProductType } from '../../../models/ProductType';
+import useHomeUiState from '../../states/HomeUiState';
 
 type AddProductProps = {
     open: boolean;
@@ -24,7 +24,7 @@ type AddProductProps = {
 export default function AddProduct(props: AddProductProps): JSX.Element {
     const {
         open,
-        close, 
+        close,
         onSave
     } = props;
 
