@@ -1,8 +1,8 @@
-import LoginRepositoryImpl from "../../repository/LoginRepositoryImpl";
+import useLoginDao from "../../database/dao/LoginDao";
 
-export default function useLoginViewModel() {
+export default function useLoginRepository() {
 
-    const { loginRepository } = LoginRepositoryImpl()
+    const { login } = useLoginDao()
 
     function loginAccountUser(userName: string, password: string) {
         return new Promise((resolve, reject) => {
@@ -10,7 +10,7 @@ export default function useLoginViewModel() {
             if (userName === "" || password === "") {
                 reject("Utilizador e/ou palavra-passe incorrecto");
             } else {
-                loginRepository(userName, password)
+                login(userName, password)
                     .then(resolve)
                     .catch(reject)
             }

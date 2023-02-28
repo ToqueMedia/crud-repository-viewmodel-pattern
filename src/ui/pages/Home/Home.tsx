@@ -2,10 +2,10 @@ import { AddIcon } from "@chakra-ui/icons";
 import { Box, Button, Stack, useDisclosure } from "@chakra-ui/react";
 import React from "react";
 
-import ProductCard from "../../components/ProductCard";
-import { ProductType } from "../../models/ProductType";
-import useHomeViewModel from "../viewmodels/HomeViewModel";
-import AddProduct from "./AddProduct";
+import ProductCard from "../../../components/ProductCard";
+import { ProductType } from "../../../models/ProductType";
+import useHomeViewModel from "../../hooks/HomeViewModel";
+import AddProduct from "../AddProduct/AddProduct";
 
 export default function Home(): JSX.Element {
 	const { isOpen, onOpen, onClose } = useDisclosure();
