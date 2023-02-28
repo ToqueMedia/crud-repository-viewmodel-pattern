@@ -1,16 +1,19 @@
-import { AddIcon } from "@chakra-ui/icons";
-import { Box, Button, Stack, useDisclosure } from "@chakra-ui/react";
+import {AddIcon} from "@chakra-ui/icons";
+import {Box, Button, Stack, useDisclosure} from "@chakra-ui/react";
 import React from "react";
 
 import ProductCard from "../../../components/ProductCard";
-import { ProductType } from "../../../models/ProductType";
-import useHomeViewModel from "../../hooks/HomeViewModel";
 import AddProduct from "../AddProduct/AddProduct";
+import {ProductType} from "../../../models/ProductType";
 
-export default function Home(): JSX.Element {
+type HomePageProps = {
+	onSavingProduct: (product: ProductType) => void
+	products: ProductType[]
+}
+
+export default function HomePage(props: HomePageProps): JSX.Element {
 	const { isOpen, onOpen, onClose } = useDisclosure();
-	const { saveProduct, products, getProducts } = useHomeViewModel();
-
+	const { onSavingProduct, products } = props
 	// TODO - Look for a better implementation
 	function RenderProduct(): any {
 		let element: Array<JSX.Element> = [];
@@ -20,20 +23,15 @@ export default function Home(): JSX.Element {
 		return element;
 	}
 
-	React.useEffect(() => {
-		getProducts();
-	}, []);
-
-	function saveProducts(product: ProductType) {
-		saveProduct(product);
-		products.push(product);
+	function openAddProductModal() {
+		onOpen()
 	}
 
 	return (
 		<>
 			<Stack direction="row" spacing={4}>
 				<Button
-					onClick={() => onOpen()}
+					onClick={openAddProductModal}
 					leftIcon={<AddIcon />}
 					colorScheme="teal"
 					variant="solid"
@@ -41,7 +39,7 @@ export default function Home(): JSX.Element {
 					Add Product
 				</Button>
 			</Stack>
-			<AddProduct open={isOpen} close={onClose} onSave={saveProducts} />
+			<AddProduct open={isOpen} close={onClose} onSave={onSavingProduct} />
 			<Box
 				width="100%"
 				display={"grid"}

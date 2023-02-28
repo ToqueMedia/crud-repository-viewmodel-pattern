@@ -1,10 +1,10 @@
-import { ProductType } from "../../models/ProductType";
+import {ProductType} from "../../models/ProductType";
 
 const database = window.localStorage;
 
-export default abstract class ProductDao {
-    
-    protected insert(value: ProductType) {
+export default function useProductDao() {
+
+    function insert(value: ProductType) {
         const data = database.getItem('products');
 
         if (data === null) {
@@ -18,7 +18,7 @@ export default abstract class ProductDao {
         }
     }
 
-    protected selectAll(): ProductType[] {
+    function selectAll(): ProductType[] {
         const data = database.getItem('products');
         if (data === null) {
             return [];
@@ -26,6 +26,10 @@ export default abstract class ProductDao {
             const convertDataToProduct: Array<ProductType> = JSON.parse(data);
             return convertDataToProduct;
         }
+    }
 
+    return {
+        insert,
+        selectAll
     }
 }
